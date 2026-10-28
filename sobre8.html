@@ -1,661 +1,619 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Formulário Blox Fruits</title>
-
-<style>
-
-/* RESET */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
-
-body{
-    background:linear-gradient(135deg,#0f172a,#111827,#1e293b);
-    color:white;
-    overflow-x:hidden;
-}
-
-/* MENU SUPERIOR */
-
-.topo{
-    width:100%;
-    height:80px;
-
-    background:#111827;
-
-    position:fixed;
-    top:0;
-    left:0;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    padding:0 25px;
-
-    z-index:1000;
-
-    box-shadow:0 0 20px rgba(0,0,0,0.5);
-}
-
-.logo{
-    color:gold;
-    font-size:28px;
-    font-weight:bold;
-    text-shadow:0 0 10px gold;
-}
-
-/* BOTÃO MENU */
-
-.menu-btn{
-    font-size:35px;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.menu-btn:hover{
-    color:gold;
-    transform:scale(1.1);
-}
-
-/* MENU LATERAL */
-
-.sidebar{
-    position:fixed;
-
-    top:0;
-    left:-300px;
-
-    width:300px;
-    height:100vh;
-
-    background:#111827;
-
-    padding:25px;
-
-    transition:0.5s;
-
-    z-index:2000;
-
-    overflow-y:auto;
-
-    box-shadow:0 0 25px rgba(0,0,0,0.6);
-}
-
-.sidebar.ativo{
-    left:0;
-}
-
-/* FECHAR */
-
-.fechar{
-    font-size:32px;
-    cursor:pointer;
-    display:block;
-    margin-bottom:25px;
-}
-
-/* LINKS */
-
-.sidebar a{
-    display:block;
-
-    text-decoration:none;
-    color:white;
-
-    background:#1e293b;
-
-    margin-bottom:12px;
-    padding:15px;
-
-    border-radius:10px;
-
-    transition:0.3s;
-
-    font-size:18px;
-}
-
-.sidebar a:hover{
-    background:gold;
-    color:black;
-    transform:translateX(8px);
-}
-
-/* CONTEÚDO */
-
-.conteudo{
-    padding:120px 20px 40px;
-    max-width:900px;
-    margin:auto;
-}
-
-/* TOPO FORM */
-
-.banner{
-    background:linear-gradient(45deg,#2563eb,#0ea5e9);
-
-    border-radius:20px;
-
-    padding:40px;
-
-    text-align:center;
-
-    margin-bottom:30px;
-
-    animation:fade 1.5s ease;
-
-    box-shadow:0 0 25px rgba(0,0,0,0.4);
-}
-
-.banner h1{
-    font-size:45px;
-    color:white;
-    text-shadow:0 0 10px black;
-}
-
-/* CARDS */
-
-.card{
-    background:#161b22;
-
-    border-radius:18px;
-
-    padding:25px;
-
-    margin-bottom:25px;
-
-    border:2px solid transparent;
-
-    animation:subir 1s ease;
-
-    transition:0.4s;
-
-    box-shadow:0 0 20px rgba(0,0,0,0.3);
-}
-
-.card:hover{
-    transform:translateY(-5px);
-    border-color:gold;
-    box-shadow:0 0 20px rgba(255,215,0,0.4);
-}
-
-/* TITULOS */
-
-.titulo{
-    font-size:35px;
-    margin-bottom:10px;
-    color:gold;
-}
-
-.descricao{
-    color:#cbd5e1;
-    line-height:1.7;
-}
-
-/* LABELS */
-
-label{
-    display:block;
-    font-size:20px;
-    margin-bottom:10px;
-    color:white;
-}
-
-.obrigatorio{
-    color:red;
-}
-
-/* INPUTS */
-
-input,
-textarea,
-select{
-    width:100%;
-
-    padding:15px;
-
-    margin-top:12px;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:#0f172a;
-
-    color:white;
-
-    font-size:16px;
-
-    outline:none;
-
-    border:2px solid transparent;
-
-    transition:0.3s;
-}
-
-input:focus,
-textarea:focus,
-select:focus{
-    border-color:gold;
-    box-shadow:0 0 10px gold;
-}
-
-textarea{
-    resize:none;
-    height:130px;
-}
-
-/* BOTÃO */
-
-.botao{
-    width:100%;
-
-    padding:18px;
-
-    border:none;
-
-    border-radius:15px;
-
-    background:linear-gradient(45deg,gold,orange);
-
-    color:black;
-
-    font-size:22px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:0.4s;
-
-    animation:pulsar 2s infinite;
-}
-
-.botao:hover{
-    transform:scale(1.03);
-    box-shadow:0 0 25px gold;
-}
-
-/* ANIMAÇÕES */
-
-@keyframes fade{
-
-    from{
-        opacity:0;
-    }
-
-    to{
-        opacity:1;
-    }
-
-}
-
-@keyframes subir{
-
-    from{
-        opacity:0;
-        transform:translateY(50px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-
-}
-
-@keyframes pulsar{
-
-    0%{
-        box-shadow:0 0 10px gold;
-    }
-
-    50%{
-        box-shadow:0 0 25px orange;
-    }
-
-    100%{
-        box-shadow:0 0 10px gold;
-    }
-
-}
-
-/* RESPONSIVO */
-
-@media(max-width:768px){
-
-    .banner h1{
-        font-size:32px;
-    }
-
-    .titulo{
-        font-size:28px;
-    }
-
-    label{
-        font-size:17px;
-    }
-
-    .sidebar{
-        width:260px;
-    }
-
-}
-
-
-/* === POLIMENTO VISUAL E ANIMAÇÕES EXTRAS === */
-html { scroll-behavior: smooth; }
-body { isolation: isolate; }
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: -1;
-    background: radial-gradient(ellipse at 15% 15%, rgba(250,204,21,.08), transparent 38%),
-                radial-gradient(ellipse at 85% 80%, rgba(56,189,248,.06), transparent 35%);
-    animation: brilhoAmbiente 9s ease-in-out infinite alternate;
-}
-@keyframes brilhoAmbiente {
-    from { opacity: .45; }
-    to { opacity: 1; }
-}
-.logo { transition: transform .35s ease, filter .35s ease; }
-.logo:hover { transform: translateY(-2px) scale(1.04); filter: drop-shadow(0 0 10px rgba(250,204,21,.65)); }
-.menu-btn, .fechar { user-select: none; }
-.menu-btn:focus-visible, .fechar:focus-visible, a:focus-visible, button:focus-visible {
-    outline: 3px solid #facc15; outline-offset: 4px;
-}
-.sidebar a { position: relative; }
-.sidebar a::after {
-    content: ""; position: absolute; left: 15px; right: 15px; bottom: 7px;
-    height: 2px; background: currentColor; transform: scaleX(0);
-    transform-origin: left; transition: transform .3s ease;
-}
-.sidebar a:hover::after { transform: scaleX(1); }
-h1 { animation: tituloBrilho 3.5s ease-in-out infinite alternate; }
-@keyframes tituloBrilho {
-    from { text-shadow: 0 0 8px rgba(250,204,21,.35); }
-    to { text-shadow: 0 0 24px rgba(250,204,21,.75); }
-}
-.card, .texto, .time, .info {
-    will-change: transform;
-}
-.card:hover, .texto:hover, .time:hover, .info:hover {
-    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
-}
-button, .botao { position: relative; overflow: hidden; }
-button::after, .botao::after {
-    content: ""; position: absolute; inset: 0; left: -120%; width: 70%;
-    background: linear-gradient(100deg, transparent, rgba(255,255,255,.35), transparent);
-    transform: skewX(-20deg); transition: left .65s ease;
-}
-button:hover::after, .botao:hover::after { left: 150%; }
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
-}
-
-
-.revelar-scroll { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.75,.25,1); }
-.revelar-scroll.revelado { opacity: 1; transform: translateY(0); }
-
-</style>
-</head>
-
-<body>
-
-<!-- MENU SUPERIOR -->
-
-<header class="topo">
-
-    <div class="logo">
-        🍎 BLOX FRUITS
-    </div>
-
-    <div class="menu-btn" onclick="abrirMenu()">
-        ☰
-    </div>
-
-</header>
-
-<!-- MENU LATERAL -->
-
-<div class="sidebar" id="sidebar">
-
-    <span class="fechar" onclick="fecharMenu()">
-        ✖
-    </span>
-      <a href="sobre3.html">🍎 Frutas</a>
-    <a href="sobre5.html">👤 Raças</a>
-    <a href="sobre9.html">⚔️ Espadas</a>
-    <a href="sobre4.html">🔫 Armas</a>
-    <a href="sobre6.html">🥋 Estilo de Luta</a>
-    <a href="sobre7.html">✨ Reworks</a>
-    <a href="sobre8.html">📄 Formulário</a>
-   
-    
-</div>
-
-<!-- CONTEÚDO -->
-
-<div class="conteudo">
-
-    <!-- TOPO -->
-
-    <div class="banner">
-
-        <h1>🔥 Formulário Blox Fruits 🔥</h1>
-
-    </div>
-
-    <!-- CARD -->
-
-    <div class="card">
-
-        <div class="titulo">
-            Informações do Jogador
-        </div>
-
-        <div class="descricao">
-            Preencha o formulário abaixo sobre sua experiência no Blox Fruits.
-        </div>
-
-    </div>
-
-    <!-- NOME -->
-
-    <div class="card">
-
-        <label>
-            Nome
-            <span class="obrigatorio">*</span>
-
-            <input type="text" placeholder="Digite seu nome">
-        </label>
-
-    </div>
-
-    <!-- TURMA -->
-
-    <div class="card">
-
-        <label>
-            Turma
-            <span class="obrigatorio">*</span>
-
-            <input type="text" placeholder="Digite sua turma">
-        </label>
-
-    </div>
-
-    <!-- JOGOU -->
-
-    <div class="card">
-
-        <label>
-            Você já jogou Blox Fruits?
-
-            <select>
-                <option>Sim</option>
-                <option>Não</option>
-            </select>
-
-        </label>
-
-    </div>
-
-    <!-- GOSTOU -->
-
-    <div class="card">
-
-        <label>
-            Você gostou do jogo?
-
-            <select>
-                <option>Muito</option>
-                <option>Mais ou menos</option>
-                <option>Não gostei</option>
-            </select>
-
-        </label>
-
-    </div>
-
-    <!-- FRUTA FAVORITA -->
-
-    <div class="card">
-
-        <label>
-            Qual sua fruta favorita?
-
-            <select>
-
-                <option>Rocket</option>
-                <option>Spin</option>
-                <option>Chop</option>
-                <option>Spring</option>
-                <option>Bomb</option>
-                <option>Smoke</option>
-                <option>Spike</option>
-                <option>Flame</option>
-                <option>Falcon</option>
-                <option>Ice</option>
-                <option>Sand</option>
-                <option>Dark</option>
-                <option>Diamond</option>
-                <option>Light</option>
-                <option>Rubber</option>
-                <option>Barrier</option>
-                <option>Ghost</option>
-                <option>Magma</option>
-                <option>Quake</option>
-                <option>Buddha</option>
-                <option>Love</option>
-                <option>Spider</option>
-                <option>Sound</option>
-                <option>Phoenix</option>
-                <option>Portal</option>
-                <option>Rumble</option>
-                <option>Pain</option>
-                <option>Blizzard</option>
-                <option>Gravity</option>
-                <option>Mammoth</option>
-                <option>T-Rex</option>
-                <option>Dough</option>
-                <option>Shadow</option>
-                <option>Venom</option>
-                <option>Control</option>
-                <option>Spirit</option>
-                <option>Leopard</option>
-                <option>Kitsune</option>
-                <option>Dragon</option>
-
-            </select>
-
-        </label>
-
-    </div>
-
-    <!-- COMENTÁRIO -->
-
-    <div class="card">
-
-        <label>
-            Comentários
-
-            <textarea placeholder="Fale sobre sua aventura no Blox Fruits..."></textarea>
-
-        </label>
-
-    </div>
-
-    <!-- BOTÃO -->
-
-    <button class="botao">
-        🚀 Enviar Formulário
-    </button>
-
-</div>
-
-<!-- SCRIPT -->
-
-<script>
-
-function abrirMenu(){
-    document.getElementById("sidebar").classList.add("ativo");
-}
-
-function fecharMenu(){
-    document.getElementById("sidebar").classList.remove("ativo");
-}
-
-</script>
-
-<script>
-
-/* === INTERAÇÕES E ANIMAÇÕES AO ROLAR A PÁGINA === */
-(function () {
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('overlay');
-    const abrir = () => {
-        if (sidebar) sidebar.classList.add('ativo');
-        if (overlay) overlay.classList.add('ativo');
-        document.body.classList.add('menu-aberto');
-    };
-    const fechar = () => {
-        if (sidebar) sidebar.classList.remove('ativo');
-        if (overlay) overlay.classList.remove('ativo');
-        document.body.classList.remove('menu-aberto');
-    };
-    window.abrirMenu = abrir;
-    window.fecharMenu = fechar;
-    if (overlay) overlay.addEventListener('click', fechar);
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') fechar(); });
-
-    const seletores = 'main h2, .conteudo > h1, .conteudo > .info, .container .card, .cards .card, .timeline .time, .texto';
-    const itens = document.querySelectorAll(seletores);
-    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        itens.forEach(el => el.classList.add('revelar-scroll'));
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('revelado');
-                    observer.unobserve(entry.target);
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blox Fruits - Formulário & Painel Admin</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        bloxDark: '#0f172a',
+                        bloxCard: '#161b22',
+                        bloxAccent: '#facc15', // Gold
+                        bloxBlue: '#2563eb'
+                    }
                 }
-            });
-        }, { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
-        itens.forEach(el => observer.observe(el));
-    }
-})();
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg,#0f172a,#111827,#1e293b); color: white; min-height: 100vh; }
+        .glow-gold { text-shadow: 0 0 12px rgba(250,204,21,0.6); }
+        .glow-box { box-shadow: 0 0 25px rgba(250,204,21,0.25); }
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #0f172a; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #facc15; }
+    </style>
+</head>
+<body class="bg-bloxDark text-white flex flex-col min-h-screen selection:bg-yellow-500 selection:text-black">
 
-</script>
+    <!-- MENU SUPERIOR -->
+    <header class="w-full h-20 bg-[#111827] fixed top-0 left-0 flex justify-between items-center px-6 md:px-12 z-50 shadow-2xl border-b border-slate-800">
+        <div class="flex items-center gap-3 cursor-pointer" onclick="mudarAba('form')">
+            <span class="text-3xl">🍎</span>
+            <span class="text-xl md:text-2xl font-extrabold text-yellow-400 glow-gold tracking-wider">BLOX FRUITS</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <button onclick="mudarAba('form')" id="btnNavForm" class="px-4 py-2 rounded-xl font-semibold text-sm md:text-base bg-yellow-400 text-black transition hover:scale-105 shadow-md flex items-center gap-2">
+                <span>📝</span> Formulário
+            </button>
+            <button onclick="mudarAba('admin')" id="btnNavAdmin" class="px-4 py-2 rounded-xl font-semibold text-sm md:text-base bg-slate-800 text-yellow-400 border border-yellow-400/40 transition hover:bg-slate-700 hover:scale-105 shadow-md flex items-center gap-2">
+                <span>🔒</span> Painel Admin
+            </button>
+        </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="flex-grow pt-28 pb-16 px-4 sm:px-6 max-w-5xl mx-auto w-full">
+
+        <!-- ABA 1: FORMULÁRIO -->
+        <section id="view-form" class="space-y-6">
+            <!-- Banner -->
+            <div class="bg-gradient-to-r from-blue-600 to-sky-500 rounded-3xl p-8 text-center shadow-2xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 text-9xl opacity-15 select-none">🍎</div>
+                <h1 class="text-3xl md:text-5xl font-black text-white glow-gold mb-2">🔥 Formulário Blox Fruits 🔥</h1>
+                <p class="text-sky-100 text-sm md:text-base max-w-xl mx-auto">Compartilhe sua jornada épica no universo de Blox Fruits e registre seus favoritos!</p>
+            </div>
+
+            <!-- Formulário Card -->
+            <form id="bloxForm" onsubmit="enviarFormulario(event)" class="bg-[#161b22] border border-slate-800 rounded-3xl p-6 md:p-10 shadow-xl space-y-6">
+                <!-- Nome -->
+                <div>
+                    <label class="block text-lg font-semibold mb-2 text-white">
+                        Nome <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="campoNome" required placeholder="Digite seu nome ou nick"
+                        class="w-full p-4 rounded-xl bg-[#0f172a] border-2 border-slate-800 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-white transition">
+                </div>
+
+                <!-- Turma -->
+                <div>
+                    <label class="block text-lg font-semibold mb-2 text-white">
+                        Turma <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="campoTurma" required placeholder="Digite sua turma (ex: 9º Ano A)"
+                        class="w-full p-4 rounded-xl bg-[#0f172a] border-2 border-slate-800 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-white transition">
+                </div>
+
+                <!-- Jogou -->
+                <div>
+                    <label class="block text-lg font-semibold mb-2 text-white">
+                        Você já jogou Blox Fruits? <span class="text-red-500">*</span>
+                    </label>
+                    <select id="campoJogou" class="w-full p-4 rounded-xl bg-[#0f172a] border-2 border-slate-800 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-white transition cursor-pointer">
+                        <option value="Sim">Sim</option>
+                        <option value="Não">Não</option>
+                    </select>
+                </div>
+
+                <!-- Gostou -->
+                <div>
+                    <label class="block text-lg font-semibold mb-2 text-white">
+                        Você gostou do jogo? <span class="text-red-500">*</span>
+                    </label>
+                    <select id="campoGostou" class="w-full p-4 rounded-xl bg-[#0f172a] border-2 border-slate-800 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-white transition cursor-pointer">
+                        <option value="Muito">Muito</option>
+                        <option value="Mais ou menos">Mais ou menos</option>
+                        <option value="Não gostei">Não gostei</option>
+                    </select>
+                </div>
+
+                <!-- Fruta Favorita -->
+                <div>
+                    <label class="block text-lg font-semibold mb-2 text-white">
+                        Qual sua fruta favorita? <span class="text-red-500">*</span>
+                    </label>
+                    <select id="campoFruta" class="w-full p-4 rounded-xl bg-[#0f172a] border-2 border-slate-800 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-white transition cursor-pointer">
+                        <option value="Rocket">Rocket</option>
+                        <option value="Spin">Spin</option>
+                        <option value="Chop">Chop</option>
+                        <option value="Spring">Spring</option>
+                        <option value="Bomb">Bomb</option>
+                        <option value="Smoke">Smoke</option>
+                        <option value="Spike">Spike</option>
+                        <option value="Flame">Flame</option>
+                        <option value="Falcon">Falcon</option>
+                        <option value="Ice">Ice</option>
+                        <option value="Sand">Sand</option>
+                        <option value="Dark">Dark</option>
+                        <option value="Diamond">Diamond</option>
+                        <option value="Light">Light</option>
+                        <option value="Rubber">Rubber</option>
+                        <option value="Barrier">Barrier</option>
+                        <option value="Ghost">Ghost</option>
+                        <option value="Magma">Magma</option>
+                        <option value="Quake">Quake</option>
+                        <option value="Buddha" selected>Buddha</option>
+                        <option value="Love">Love</option>
+                        <option value="Spider">Spider</option>
+                        <option value="Sound">Sound</option>
+                        <option value="Phoenix">Phoenix</option>
+                        <option value="Portal">Portal</option>
+                        <option value="Rumble">Rumble</option>
+                        <option value="Pain">Pain</option>
+                        <option value="Blizzard">Blizzard</option>
+                        <option value="Gravity">Gravity</option>
+                        <option value="Mammoth">Mammoth</option>
+                        <option value="T-Rex">T-Rex</option>
+                        <option value="Dough">Dough</option>
+                        <option value="Shadow">Shadow</option>
+                        <option value="Venom">Venom</option>
+                        <option value="Control">Control</option>
+                        <option value="Spirit">Spirit</option>
+                        <option value="Leopard">Leopard</option>
+                        <option value="Kitsune">Kitsune</option>
+                        <option value="Dragon">Dragon</option>
+                    </select>
+                </div>
+
+                <!-- Comentário -->
+                <div>
+                    <label class="block text-lg font-semibold mb-2 text-white">
+                        Comentários / Aventura
+                    </label>
+                    <textarea id="campoComentario" placeholder="Fale sobre sua aventura no Blox Fruits..."
+                        class="w-full p-4 rounded-xl bg-[#0f172a] border-2 border-slate-800 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-white transition h-32 resize-none"></textarea>
+                </div>
+
+                <!-- Botão Enviar -->
+                <button type="submit" class="w-full py-4 rounded-2xl bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-extrabold text-xl shadow-lg hover:shadow-yellow-500/50 transition transform hover:-translate-y-1">
+                    🚀 Enviar Formulário
+                </button>
+            </form>
+        </section>
+
+        <!-- ABA 2: PAINEL ADMIN -->
+        <section id="view-admin" class="hidden space-y-6">
+            <!-- Tela de Login do Admin -->
+            <div id="adminLoginBox" class="bg-[#161b22] border border-slate-800 rounded-3xl p-8 max-w-md mx-auto shadow-2xl text-center space-y-6 my-12">
+                <div class="text-5xl">🔐</div>
+                <h2 class="text-2xl font-bold text-yellow-400">Painel Restrito</h2>
+                <p class="text-slate-400 text-sm">Digite a senha de administrador para acessar os dados salvos.</p>
+                <form onsubmit="fazerLoginAdmin(event)" class="space-y-4">
+                    <input type="password" id="senhaAdminInput" required placeholder="Senha (padrão: admin123)"
+                        class="w-full p-4 rounded-xl bg-[#0f172a] border-2 border-slate-800 focus:border-yellow-400 outline-none text-white text-center tracking-widest">
+                    <button type="submit" class="w-full py-3 rounded-xl bg-yellow-400 text-black font-bold hover:bg-yellow-300 transition shadow-lg">
+                        Entrar no Painel
+                    </button>
+                </form>
+            </div>
+
+            <!-- Conteúdo do Admin (Oculto até autenticar) -->
+            <div id="adminDashboard" class="hidden space-y-6">
+                <!-- Cabeçalho do Painel com Ações Rápidas -->
+                <div class="bg-[#161b22] border border-slate-800 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row justify-between items-center gap-4 shadow-xl">
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-black text-yellow-400">🛡️ Painel Administrativo</h2>
+                        <p class="text-slate-400 text-sm mt-1">Gerencie e analise todas as respostas recebidas.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <button onclick="exportarJSON()" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-semibold text-sm transition shadow flex items-center gap-2">
+                            <span>📥</span> Exportar JSON
+                        </button>
+                        <button onclick="exportarCSV()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-semibold text-sm transition shadow flex items-center gap-2">
+                            <span>📊</span> Exportar CSV
+                        </button>
+                        <button onclick="abrirModalSenha()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-yellow-400 border border-yellow-400/30 rounded-xl font-semibold text-sm transition shadow flex items-center gap-2">
+                            <span>🔑</span> Alterar Senha
+                        </button>
+                        <button onclick="sairAdmin()" class="px-4 py-2 bg-red-600/20 hover:bg-red-600 text-red-300 hover:text-white border border-red-500/30 rounded-xl font-semibold text-sm transition shadow">
+                            Sair
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Estatísticas Rápidas -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-[#161b22] border border-slate-800 rounded-2xl p-5 shadow-lg flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-yellow-400/10 text-yellow-400 flex items-center justify-center text-2xl">📝</div>
+                        <div>
+                            <p class="text-slate-400 text-xs font-medium">Total de Respostas</p>
+                            <h3 id="statTotal" class="text-2xl font-black text-white">0</h3>
+                        </div>
+                    </div>
+                    <div class="bg-[#161b22] border border-slate-800 rounded-2xl p-5 shadow-lg flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-2xl">🍎</div>
+                        <div>
+                            <p class="text-slate-400 text-xs font-medium">Fruta Mais Votada</p>
+                            <h3 id="statFruta" class="text-lg font-black text-white truncate max-w-[150px]" title="-">-</h3>
+                        </div>
+                    </div>
+                    <div class="bg-[#161b22] border border-slate-800 rounded-2xl p-5 shadow-lg flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl">🎮</div>
+                        <div>
+                            <p class="text-slate-400 text-xs font-medium">Já Jogaram</p>
+                            <h3 id="statJogou" class="text-2xl font-black text-white">0%</h3>
+                        </div>
+                    </div>
+                    <div class="bg-[#161b22] border border-slate-800 rounded-2xl p-5 shadow-lg flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-2xl">⭐</div>
+                        <div>
+                            <p class="text-slate-400 text-xs font-medium">Aprovação (Gostaram)</p>
+                            <h3 id="statAprovacao" class="text-2xl font-black text-white">0%</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabela de Respostas -->
+                <div class="bg-[#161b22] border border-slate-800 rounded-3xl p-6 shadow-xl space-y-4">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-800 pb-4">
+                        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                            <span>📋</span> Respostas Registradas
+                        </h3>
+                        <div class="flex items-center gap-3 w-full sm:w-auto">
+                            <input type="text" id="filtroPesquisa" oninput="renderizarTabela()" placeholder="Pesquisar por nome ou turma..."
+                                class="w-full sm:w-64 px-4 py-2 rounded-xl bg-[#0f172a] border border-slate-800 text-sm focus:border-yellow-400 outline-none text-white">
+                            <button onclick="confirmarLimparTudo()" class="px-4 py-2 bg-red-600 hover:bg-red-500 text-white rounded-xl font-semibold text-sm transition shadow whitespace-nowrap">
+                                Limpar Tudo
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Container da Tabela / Cards Responsivos -->
+                    <div class="overflow-x-auto custom-scrollbar max-h-[500px]">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-[#0f172a] text-slate-400 text-xs uppercase tracking-wider sticky top-0 z-10">
+                                    <th class="p-3.5 rounded-l-xl">Data / Hora</th>
+                                    <th class="p-3.5">Nome</th>
+                                    <th class="p-3.5">Turma</th>
+                                    <th class="p-3.5">Jogou?</th>
+                                    <th class="p-3.5">Gostou?</th>
+                                    <th class="p-3.5">Fruta</th>
+                                    <th class="p-3.5">Comentário</th>
+                                    <th class="p-3.5 rounded-r-xl text-center">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaRespostas" class="divide-y divide-slate-800/60 text-sm">
+                                <!-- Preenchido via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="semRespostas" class="hidden text-center py-12 text-slate-400">
+                        Nenhuma resposta registrada até o momento.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL CUSTOMIZADO (SUBSTITUI ALERT / CONFIRM) -->
+    <div id="customModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-[#161b22] border border-slate-700 rounded-3xl p-6 max-w-sm w-full text-center space-y-4 shadow-2xl animate-in fade-in zoom-in duration-200">
+            <div id="modalIcon" class="text-4xl">✨</div>
+            <h3 id="modalTitulo" class="text-xl font-bold text-yellow-400">Aviso</h3>
+            <p id="modalMensagem" class="text-slate-300 text-sm leading-relaxed">Mensagem aqui...</p>
+            <div id="modalBotoes" class="flex gap-3 justify-center pt-2">
+                <button onclick="fecharModal()" class="w-full py-2.5 bg-yellow-400 text-black font-bold rounded-xl hover:bg-yellow-300 transition">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE ALTERAR SENHA -->
+    <div id="modalSenha" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-[#161b22] border border-slate-700 rounded-3xl p-6 max-w-sm w-full text-space space-y-4 shadow-2xl">
+            <h3 class="text-xl font-bold text-yellow-400 flex items-center gap-2"><span>🔑</span> Alterar Senha do Admin</h3>
+            <p class="text-slate-400 text-xs">Digite a nova senha desejada para proteger o painel.</p>
+            <div class="space-y-3">
+                <input type="password" id="novaSenhaInput" placeholder="Nova senha"
+                    class="w-full p-3 rounded-xl bg-[#0f172a] border border-slate-700 focus:border-yellow-400 outline-none text-white text-sm">
+                <input type="password" id="confirmaNovaSenhaInput" placeholder="Confirme a nova senha"
+                    class="w-full p-3 rounded-xl bg-[#0f172a] border border-slate-700 focus:border-yellow-400 outline-none text-white text-sm">
+            </div>
+            <div class="flex gap-2 pt-2">
+                <button onclick="salvarNovaSenha()" class="flex-1 py-2.5 bg-yellow-400 text-black font-bold rounded-xl hover:bg-yellow-300 transition text-sm">Salvar</button>
+                <button onclick="fecharModalSenha()" class="flex-1 py-2.5 bg-slate-800 text-slate-300 font-bold rounded-xl hover:bg-slate-700 transition text-sm">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- RODAPÉ -->
+    <footer class="w-full py-6 text-center text-slate-500 text-xs border-t border-slate-800/80">
+        Blox Fruits Painel Integrado &copy; 2026. Todos os direitos reservados.
+    </footer>
+
+    <!-- SCRIPT DE GERENCIAMENTO -->
+    <script>
+        // Inicialização de Senha Admin se não existir
+        if (!localStorage.getItem('blox_admin_pass')) {
+            localStorage.setItem('blox_admin_pass', 'admin123');
+        }
+
+        // Navegação entre abas
+        function mudarAba(aba) {
+            const viewForm = document.getElementById('view-form');
+            const viewAdmin = document.getElementById('view-admin');
+            const btnForm = document.getElementById('btnNavForm');
+            const btnAdmin = document.getElementById('btnNavAdmin');
+
+            if (aba === 'form') {
+                viewForm.classList.remove('hidden');
+                viewAdmin.classList.add('hidden');
+                btnForm.className = "px-4 py-2 rounded-xl font-semibold text-sm md:text-base bg-yellow-400 text-black transition hover:scale-105 shadow-md flex items-center gap-2";
+                btnAdmin.className = "px-4 py-2 rounded-xl font-semibold text-sm md:text-base bg-slate-800 text-yellow-400 border border-yellow-400/40 transition hover:bg-slate-700 hover:scale-105 shadow-md flex items-center gap-2";
+            } else {
+                viewForm.classList.add('hidden');
+                viewAdmin.classList.remove('hidden');
+                btnAdmin.className = "px-4 py-2 rounded-xl font-semibold text-sm md:text-base bg-yellow-400 text-black transition hover:scale-105 shadow-md flex items-center gap-2";
+                btnForm.className = "px-4 py-2 rounded-xl font-semibold text-sm md:text-base bg-slate-800 text-yellow-400 border border-yellow-400/40 transition hover:bg-slate-700 hover:scale-105 shadow-md flex items-center gap-2";
+                
+                // Verificar se já está autenticado na sessão
+                if (sessionStorage.getItem('blox_admin_autenticado') === 'true') {
+                    document.getElementById('adminLoginBox').classList.add('hidden');
+                    document.getElementById('adminDashboard').classList.remove('hidden');
+                    atualizarPainelAdmin();
+                } else {
+                    document.getElementById('adminLoginBox').classList.remove('hidden');
+                    document.getElementById('adminDashboard').classList.add('hidden');
+                }
+            }
+        }
+
+        // Enviar Formulário
+        function enviarFormulario(e) {
+            e.preventDefault();
+
+            const nome = document.getElementById('campoNome').value.trim();
+            const turma = document.getElementById('campoTurma').value.trim();
+            const jogou = document.getElementById('campoJogou').value;
+            const gostou = document.getElementById('campoGostou').value;
+            const fruta = document.getElementById('campoFruta').value;
+            const comentario = document.getElementById('campoComentario').value.trim();
+
+            const agora = new Date();
+            const dataFormatada = agora.toLocaleDateString('pt-BR') + ' ' + agora.toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
+
+            const novaResposta = {
+                id: Date.now().toString(),
+                data: dataFormatada,
+                nome,
+                turma,
+                jogou,
+                gostou,
+                fruta,
+                comentario: comentario || 'Nenhum comentário.'
+            };
+
+            // Salvar no localStorage
+            let respostas = JSON.parse(localStorage.getItem('blox_respostas')) || [];
+            respostas.unshift(novaResposta); // Adiciona no início
+            localStorage.setItem('blox_respostas', JSON.stringify(respostas));
+
+            // Limpar formulário
+            document.getElementById('bloxForm').reset();
+
+            // Mostrar modal de sucesso
+            mostrarModal('Sucesso!', 'Formulário enviado e salvo com sucesso!', '🎉');
+        }
+
+        // Login do Admin
+        function fazerLoginAdmin(e) {
+            e.preventDefault();
+            const senhaDigitada = document.getElementById('senhaAdminInput').value;
+            const senhaSalva = localStorage.getItem('blox_admin_pass');
+
+            if (senhaDigitada === senhaSalva) {
+                sessionStorage.setItem('blox_admin_autenticado', 'true');
+                document.getElementById('senhaAdminInput').value = '';
+                document.getElementById('adminLoginBox').classList.add('hidden');
+                document.getElementById('adminDashboard').classList.remove('hidden');
+                atualizarPainelAdmin();
+            } else {
+                mostrarModal('Erro', 'Senha incorreta! Tente novamente.', '❌');
+            }
+        }
+
+        function sairAdmin() {
+            sessionStorage.removeItem('blox_admin_autenticado');
+            document.getElementById('adminDashboard').classList.add('hidden');
+            document.getElementById('adminLoginBox').classList.remove('hidden');
+        }
+
+        // Atualizar Dados e Estatísticas do Painel
+        function atualizarPainelAdmin() {
+            renderizarTabela();
+            calcularEstatisticas();
+        }
+
+        function calcularEstatisticas() {
+            const respostas = JSON.parse(localStorage.getItem('blox_respostas')) || [];
+            const total = respostas.length;
+            document.getElementById('statTotal').innerText = total;
+
+            if (total === 0) {
+                document.getElementById('statFruta').innerText = '-';
+                document.getElementById('statJogou').innerText = '0%';
+                document.getElementById('statAprovacao').innerText = '0%';
+                return;
+            }
+
+            // Fruta mais votada
+            const contagemFrutas = {};
+            let jogouSim = 0;
+            let gostouAprovado = 0;
+
+            respostas.forEach(r => {
+                contagemFrutas[r.fruta] = (contagemFrutas[r.fruta] || 0) + 1;
+                if (r.jogou === 'Sim') jogouSim++;
+                if (r.gostou === 'Muito' || r.gostou === 'Mais ou menos') gostouAprovado++;
+            });
+
+            let frutaMaisVotada = '-';
+            let maxVotos = -1;
+            for (let f in contagemFrutas) {
+                if (contagemFrutas[f] > maxVotos) {
+                    maxVotos = contagemFrutas[f];
+                    frutaMaisVotada = f;
+                }
+            }
+
+            document.getElementById('statFruta').innerText = frutaMaisVotada;
+            document.getElementById('statFruta').title = `${frutaMaisVotada} (${maxVotos} votos)`;
+            document.getElementById('statJogou').innerText = Math.round((jogouSim / total) * 100) + '%';
+            document.getElementById('statAprovacao').innerText = Math.round((gostouAprovado / total) * 100) + '%';
+        }
+
+        // Renderizar Tabela
+        function renderizarTabela() {
+            const respostas = JSON.parse(localStorage.getItem('blox_respostas')) || [];
+            const termoBusca = document.getElementById('filtroPesquisa').value.toLowerCase();
+            const tbody = document.getElementById('tabelaRespostas');
+            const msgVazio = document.getElementById('semRespostas');
+
+            tbody.innerHTML = '';
+
+            const filtradas = respostas.filter(r => 
+                r.nome.toLowerCase().includes(termoBusca) || r.turma.toLowerCase().includes(termoBusca)
+            );
+
+            if (filtradas.length === 0) {
+                msgVazio.classList.remove('hidden');
+                return;
+            } else {
+                msgVazio.classList.add('hidden');
+            }
+
+            filtradas.forEach(r => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-800/40 transition";
+                tr.innerHTML = `
+                    <td class="p-3.5 text-xs text-slate-400 whitespace-nowrap">${r.data}</td>
+                    <td class="p-3.5 font-semibold text-white">${escapeHtml(r.nome)}</td>
+                    <td class="p-3.5 text-slate-300">${escapeHtml(r.turma)}</td>
+                    <td class="p-3.5">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold ${r.jogou === 'Sim' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-red-500/20 text-red-400 border border-red-500/30'}">
+                            ${r.jogou}
+                        </span>
+                    </td>
+                    <td class="p-3.5 text-slate-300">${r.gostou}</td>
+                    <td class="p-3.5 font-medium text-yellow-400 flex items-center gap-1">🍎 ${r.fruta}</td>
+                    <td class="p-3.5 text-slate-300 text-xs max-w-xs truncate" title="${escapeHtml(r.comentario)}">${escapeHtml(r.comentario)}</td>
+                    <td class="p-3.5 text-center whitespace-nowrap">
+                        <button onclick="excluirResposta('${r.id}')" class="p-2 bg-red-600/20 hover:bg-red-600 text-red-400 hover:text-white rounded-lg transition text-xs" title="Excluir resposta">
+                            🗑️
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Ações de Exclusão
+        function excluirResposta(id) {
+            let respostas = JSON.parse(localStorage.getItem('blox_respostas')) || [];
+            respostas = respostas.filter(r => r.id !== id);
+            localStorage.setItem('blox_respostas', JSON.stringify(respostas));
+            atualizarPainelAdmin();
+        }
+
+        function confirmarLimparTudo() {
+            mostrarModalConfirmacao("Limpar Tudo", "Tem certeza que deseja apagar permanentemente todas as respostas salvas?", () => {
+                localStorage.removeItem('blox_respostas');
+                atualizarPainelAdmin();
+                fecharModal();
+            });
+        }
+
+        // Exportar Dados
+        function exportarJSON() {
+            const respostas = localStorage.getItem('blox_respostas') || '[]';
+            const blob = new Blob([respostas], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `respostas_blox_fruits_${new Date().toISOString().slice(0,10)}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function exportarCSV() {
+            const respostas = JSON.parse(localStorage.getItem('blox_respostas')) || [];
+            if (respostas.length === 0) {
+                mostrarModal('Aviso', 'Não há dados para exportar.', '⚠️');
+                return;
+            }
+
+            let csv = 'ID,Data,Nome,Turma,Jogou,Gostou,Fruta,Comentario\n';
+            respostas.forEach(r => {
+                csv += `"${r.id}","${r.data}","${r.nome.replace(/"/g, '""')}","${r.turma.replace(/"/g, '""')}","${r.jogou}","${r.gostou}","${r.fruta}","${r.comentario.replace(/"/g, '""')}"\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `respostas_blox_fruits_${new Date().toISOString().slice(0,10)}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Gerenciamento de Senha Admin
+        function abrirModalSenha() {
+            document.getElementById('novaSenhaInput').value = '';
+            document.getElementById('confirmaNovaSenhaInput').value = '';
+            document.getElementById('modalSenha').classList.remove('hidden');
+        }
+
+        function fecharModalSenha() {
+            document.getElementById('modalSenha').classList.add('hidden');
+        }
+
+        function salvarNovaSenha() {
+            const nova = document.getElementById('novaSenhaInput').value;
+            const confirma = document.getElementById('confirmaNovaSenhaInput').value;
+
+            if (!nova || nova.length < 4) {
+                mostrarModal('Aviso', 'A senha deve ter pelo menos 4 caracteres.', '⚠️');
+                return;
+            }
+
+            if (nova !== confirma) {
+                mostrarModal('Erro', 'As senhas não coincidem!', '❌');
+                return;
+            }
+
+            localStorage.setItem('blox_admin_pass', nova);
+            fecharModalSenha();
+            mostrarModal('Sucesso!', 'Senha do painel administrativo alterada com sucesso!', '🔒');
+        }
+
+        // Utilitários de Modal Customizado
+        function mostrarModal(titulo, mensagem, icone = '✨') {
+            document.getElementById('modalTitulo').innerText = titulo;
+            document.getElementById('modalMensagem').innerText = mensagem;
+            document.getElementById('modalIcon').innerText = icone;
+            document.getElementById('modalBotoes').innerHTML = `<button onclick="fecharModal()" class="w-full py-2.5 bg-yellow-400 text-black font-bold rounded-xl hover:bg-yellow-300 transition">OK</button>`;
+            document.getElementById('customModal').classList.remove('hidden');
+        }
+
+        function mostrarModalConfirmacao(titulo, mensagem, callbackSim) {
+            document.getElementById('modalTitulo').innerText = titulo;
+            document.getElementById('modalMensagem').innerText = mensagem;
+            document.getElementById('modalIcon').innerText = '⚠️';
+            document.getElementById('modalBotoes').innerHTML = `
+                <button id="btnSimModal" class="flex-1 py-2.5 bg-red-600 text-white font-bold rounded-xl hover:bg-red-500 transition text-sm">Sim</button>
+                <button onclick="fecharModal()" class="flex-1 py-2.5 bg-slate-800 text-slate-300 font-bold rounded-xl hover:bg-slate-700 transition text-sm">Cancelar</button>
+            `;
+            document.getElementById('customModal').classList.remove('hidden');
+            document.getElementById('btnSimModal').onclick = callbackSim;
+        }
+
+        function fecharModal() {
+            document.getElementById('customModal').classList.add('hidden');
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+    </script>
 </body>
 </html>
